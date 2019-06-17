@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask  # new
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 # instantiate the db
