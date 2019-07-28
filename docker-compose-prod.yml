@@ -17,6 +17,7 @@ services:
       - users-db
 
   users-db:
+    image: postgres:10-alpine
     build:
       context: ./services/users/project/db
       dockerfile: Dockerfile
