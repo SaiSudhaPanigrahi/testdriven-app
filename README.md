@@ -1,10 +1,9 @@
 <!-- PROJECT SHIELDS -->
 <!--
 -->
+
 [![Build Status][build-shield]][build-url]
 [![Contributors][contributors-shield]][contributors-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -29,40 +28,37 @@
   </p>
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
+
 ## Table of Contents
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
-
-
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
 
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 This repository mirrors my progress for the course **[Microservices with Docker, Flask and React][testdriven]**.
 
-
 ### Built With
-* [Flask](https://palletsprojects.com/p/flask/)
-* [Docker](https://www.docker.com/)
-* [React](https://reactjs.org)
-* [Bulma CSS](https://bulma.io/)
 
-
+- [Flask](https://palletsprojects.com/p/flask/)
+- [Docker](https://www.docker.com/)
+- [React](https://reactjs.org)
+- [Bulma CSS](https://bulma.io/)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -80,31 +76,46 @@ Please make sure to install both on your system. See [Docker Documentation](http
 git clone https://github.com/sophiabrandt/testdriven-app.git
 ```
 
-2. Run Docker:
+2. Build the containers:
+
+```sh
+docker-compose build
+```
+
+3. Start the containers (in the background):
 
 ```sh
 docker-compose up -d
 ```
 
-3. Run tests:
+4. Seed the database:
+
+```sh
+docker-compose exec users python manage.py seed_db
+```
+
+5. Run tests:
 
 ```sh
 docker-compose exec users python manage.py test
 ```
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
+The React app is available at `http://localhost`.
 
+The users endpoint is available at `http://localhost/users`.
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/sophiabrandt/testdriven-app/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -118,31 +129,32 @@ Contributions are what make the open source community such an amazing place to b
 **Please note that this is a learning repo and not a real app.**
 
 <!-- LICENSE -->
+
 ## License
 
 Code is &copy; 2019 Michael Herman. Minor adjustments by Sophia Brandt.
 
-
 <!-- CONTACT -->
-## Contact
 
+## Contact
 
 Sophia Brandt - [@hisophiabrandt](https://twitter.com/hisophiabrandt)
 
 Project Link: [https://github.com/sophiabrandt/testdriven-app](https://github.com/sophiabrandt/testdriven-app)
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
+
 ## Acknowledgements
-* [Microservices with Docker, Flask, and React][testdriven]
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Best-README-Template][bestreadmetemplate]
-* [Travis CI](https://travis-ci.org/)
+
+- [Microservices with Docker, Flask, and React][testdriven]
+- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+- [Img Shields](https://shields.io)
+- [Best-README-Template][bestreadmetemplate]
+- [Travis CI](https://travis-ci.org/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [build-shield]: https://travis-ci.org/sophiabrandt/testdriven-app.svg?branch=master
 [build-url]: https://travis-ci.org/sophiabrandt/testdriven-app
 [contributors-shield]: https://img.shields.io/badge/contributors-1-orange.svg?style=flat-square
