@@ -82,19 +82,14 @@ git clone https://github.com/sophiabrandt/testdriven-app.git
 docker-compose build
 ```
 
-3. Start the containers (in the background):
+3. Create and seed the database:
 
 ```sh
-docker-compose up -d
-```
-
-4. Seed the database:
-
-```sh
+docker-compose exec users python manage.py recreate_db
 docker-compose exec users python manage.py seed_db
 ```
 
-5. Run tests:
+4. Run tests:
 
 ```sh
 docker-compose exec users python manage.py test
