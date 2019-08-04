@@ -8,11 +8,12 @@ RUN apk update && \
     apk add netcat-openbsd
 
 # set working directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # add and install requirements
 COPY ./requirements.txt /usr/src/app/requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # add entrypoint.sh
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
@@ -20,6 +21,11 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 
 # add app
 COPY . /usr/src/app
+
+# add user
+RUN adduser -D user
+RUN chown -R user:user /usr/src/app && chmod -R 755 /usr/src/app
+USER user
 
 # run server
 CMD ["/usr/src/app/entrypoint.sh"]

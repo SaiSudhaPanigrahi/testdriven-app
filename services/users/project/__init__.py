@@ -11,7 +11,6 @@ toolbar = DebugToolbarExtension()
 cors = CORS()
 
 
-# new
 def create_app(script_info=None):
 
     # instantiate the app

@@ -120,7 +120,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- LICENSE -->
 ## License
 
-All Code is &copy; 2019 Michael Herman.
+Code is &copy; 2019 Michael Herman. Minor adjustments by Sophia Brandt.
 
 
 <!-- CONTACT -->

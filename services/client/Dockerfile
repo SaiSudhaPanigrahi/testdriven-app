@@ -13,7 +13,7 @@ COPY package-lock.json /usr/src/app/package-lock.json
 RUN npm install react-scripts@3.0.1 -g --silent
 RUN chown -R node:node .
 USER node
-RUN npm ci && npm cache clean --force
+RUN npm ci
 
 # start app
 CMD ["npm", "start"]
