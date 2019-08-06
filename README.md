@@ -87,6 +87,7 @@ docker-compose build
 ```sh
 docker-compose exec users python manage.py recreate_db
 docker-compose exec users python manage.py seed_db
+docker-compose exec users python manage.py db upgrade
 ```
 
 4. Run tests:
