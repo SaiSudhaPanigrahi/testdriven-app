@@ -1,14 +1,12 @@
 # base image
-FROM python:3.7.2-alpine
+FROM python:3.7.2-slim
 
 # install dependencies
-RUN apk update && \
-    apk add --virtual build-deps gcc python-dev musl-dev && \
-    apk add postgresql-dev && \
-    apk add netcat-openbsd
+RUN apt-get update && \
+    apt-get -y install netcat && \
+    apt-get clean
 
 # set working directory
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # add and install requirements
@@ -23,7 +21,7 @@ RUN chmod +x /usr/src/app/entrypoint.sh
 COPY . /usr/src/app
 
 # add user
-RUN adduser -D user
+RUN addgroup --system user && adduser --system --group user
 RUN chown -R user:user /usr/src/app && chmod -R 755 /usr/src/app
 USER user
 
