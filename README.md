@@ -55,13 +55,14 @@ This repository mirrors my progress for the course **[Microservices with Docker,
 - [Flask](https://palletsprojects.com/p/flask/)
 - [Docker](https://www.docker.com/)
 - [React](https://reactjs.org)
+- [PostgreSQL](https://www.postgresql.org/)
 - [Bulma CSS](https://bulma.io/)
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
