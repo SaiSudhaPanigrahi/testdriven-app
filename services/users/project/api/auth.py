@@ -34,7 +34,7 @@ def register_user():
             response_object["auth_token"] = auth_token.decode()
             return jsonify(response_object), 201
         else:
-            response_object["messaege"] = "Sorry. That user already exists."
+            response_object["message"] = "Sorry. That user already exists."
             return jsonify(response_object), 400
     # error handling
     except (exc.IntegrityError, ValueError):
