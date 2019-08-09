@@ -12,11 +12,14 @@ def register_user():
     # get post data
     post_data = request.get_json()
     response_object = {"status": "fail", "message": "Invalid payload."}
+
     if not post_data:
         return jsonify(response_object), 400
-    username = post_data.get("email")
+
+    username = post_data.get("username")
     email = post_data.get("email")
     password = post_data.get("password")
+
     try:
         # check for existing user
         user = User.query.filter(
