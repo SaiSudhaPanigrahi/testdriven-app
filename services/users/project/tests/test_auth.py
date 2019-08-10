@@ -199,6 +199,38 @@ class TestAuthBlueprint(BaseTestCase):
             self.assertTrue(data["status"] == "fail")
             self.assertTrue(data["message"] == "Invalid token. Please login again.")
 
+    def test_user_status(self):
+        add_user("test", "test@test.com", "testpass123")
+        with self.client:
+            resp_login = self.client.post(
+                "/auth/login",
+                data=json.dumps({"email": "test@test.com", "password": "testpass123"}),
+                content_type="application/json",
+            )
+            token = json.loads(resp_login.data.decode())["auth_token"]
+            response = self.client.get(
+                "/auth/status", headers={"Authorization": f"Bearer {token}"}
+            )
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(response.content_type == "application/json")
+            self.assertTrue(data["status"] == "success")
+            self.assertTrue(data["data"] is not None)
+            self.assertTrue(data["data"]["username"] == "test")
+            self.assertTrue(data["data"]["email"] == "test@test.com")
+            self.assertTrue(data["data"]["active"] is True)
+
+    def test_invalid_status(self):
+        with self.client:
+            response = self.client.get(
+                "/auth/status", headers={"Authorization": "Bearer invalid"}
+            )
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 401)
+            self.assertTrue(response.content_type == "application/json")
+            self.assertTrue(data["status"] == "fail")
+            self.assertTrue(data["message"] == "Invalid token. Please login again.")
+
 
 if __name__ == "__main__":
     unittest.main()
