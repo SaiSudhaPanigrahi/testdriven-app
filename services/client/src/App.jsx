@@ -56,6 +56,29 @@ class App extends React.Component {
     this.setState(obj)
   }
 
+  handleFormChange = event => {
+    const obj = this.state.formData
+    obj[event.target.name] = event.target.value
+    this.setState(obj)
+  }
+
+  handleUserFormSubmit = event => {
+    event.preventDefault()
+    const formType = window.location.href.split('/').reverse()[0]
+    let data = {
+      email: this.state.formData.email,
+      password: this.state.formData.password,
+    }
+    if (formType === 'register') {
+      data.username = this.state.formData.username
+    }
+    const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/${formType}`
+    axios
+      .post(url, data)
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
+  }
+
   render() {
     const { users, username, email, title, formData } = this.state
 
@@ -93,14 +116,24 @@ class App extends React.Component {
                     exact
                     path="/register"
                     render={() => (
-                      <Form formType={'Register'} formData={formData} />
+                      <Form
+                        formType={'Register'}
+                        formData={formData}
+                        handleFormChange={this.handleFormChange}
+                        handleUserFormSubmit={this.handleUserFormSubmit}
+                      />
                     )}
                   />
                   <Route
                     exact
                     path="/login"
                     render={() => (
-                      <Form formType={'Login'} formData={formData} />
+                      <Form
+                        formType={'Login'}
+                        formData={formData}
+                        handleFormChange={this.handleFormChange}
+                        handleUserFormSubmit={this.handleUserFormSubmit}
+                      />
                     )}
                   />
                   )}
