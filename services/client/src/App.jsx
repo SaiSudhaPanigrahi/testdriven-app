@@ -7,6 +7,7 @@ import AddUser from './components/AddUser'
 import About from './components/About'
 import NavBar from './components/NavBar'
 import Form from './components/Form'
+import Logout from './components/Logout'
 
 class App extends React.Component {
   constructor() {
@@ -93,6 +94,11 @@ class App extends React.Component {
     })
   }
 
+  logoutUser = () => {
+    window.localStorage.clear()
+    this.setState({ isAuthenticated: false })
+  }
+
   render() {
     const {
       users,
@@ -159,7 +165,16 @@ class App extends React.Component {
                       />
                     )}
                   />
-                  )}
+                  <Route
+                    exact
+                    path="/logout"
+                    render={() => (
+                      <Logout
+                        logoutUser={this.logoutUser}
+                        isAuthenticated={isAuthenticated}
+                      />
+                    )}
+                  />
                 </Switch>
               </div>
             </div>
