@@ -16,7 +16,7 @@ const testData = [
   },
   {
     formType: 'Login',
-    title: 'Login',
+    title: 'Log In',
     formData: {
       email: '',
       password: '',
@@ -38,10 +38,10 @@ testData.forEach(el => {
     )
     expect(formGroup.get(0).props.children.props.value).toBe('')
   })
-})
 
-test(`${el.formType} Form renders snapshot properly`, () => {
-  const component = <Form formType={el.formType} formData={el.formData} />
-  const tree = renderer.create(component).toJSON()
-  expect(tree).toMatchSnapShot()
+  test(`${el.formType} Form renders snapshot properly`, () => {
+    const component = <Form formType={el.formType} formData={el.formData} />
+    const tree = renderer.create(component).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

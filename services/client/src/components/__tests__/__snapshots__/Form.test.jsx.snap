@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Form renders a snapshot properly 1`] = `
+exports[`Login Form renders snapshot properly 1`] = `
 <div>
   <h1
     className="title is-1"
@@ -10,6 +10,7 @@ exports[`Login Form renders a snapshot properly 1`] = `
   <hr />
   <br />
   <form
+    method="post"
     onSubmit={[Function]}
   >
     <div
@@ -45,7 +46,7 @@ exports[`Login Form renders a snapshot properly 1`] = `
 </div>
 `;
 
-exports[`Register Form renders a snapshot properly 1`] = `
+exports[`Register Form renders snapshot properly 1`] = `
 <div>
   <h1
     className="title is-1"
@@ -55,6 +56,7 @@ exports[`Register Form renders a snapshot properly 1`] = `
   <hr />
   <br />
   <form
+    method="post"
     onSubmit={[Function]}
   >
     <div
