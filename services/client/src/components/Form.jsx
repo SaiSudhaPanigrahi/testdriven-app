@@ -1,6 +1,8 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
 const Form = props => {
+  if (props.isAuthenticated) return <Redirect to="/" />
   return (
     <div>
       {props.formType === 'Login' && <h1 className="title is-1">Log In</h1>}
@@ -9,7 +11,7 @@ const Form = props => {
       )}
       <hr />
       <br />
-      <form onSubmit={event => props.handleUserFormSubmit(event)}>
+      <form method="post" onSubmit={event => props.handleUserFormSubmit(event)}>
         {props.formType === 'Register' && (
           <div className="field">
             <input

@@ -21,6 +21,7 @@ class App extends React.Component {
         email: '',
         password: '',
       },
+      isAuthenticated: false,
     }
   }
 
@@ -75,12 +76,32 @@ class App extends React.Component {
     const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/${formType}`
     axios
       .post(url, data)
-      .then(res => console.log(res))
+      .then(res => {
+        this.clearFormState()
+        window.localStorage.setItem('authToken', res.data.auth_token)
+        this.setState({ isAuthenticated: true })
+        this.getUsers()
+      })
       .catch(err => console.error(err))
   }
 
+  clearFormState = () => {
+    this.setState({
+      formData: { username: '', email: '', password: '' },
+      username: '',
+      email: '',
+    })
+  }
+
   render() {
-    const { users, username, email, title, formData } = this.state
+    const {
+      users,
+      username,
+      email,
+      title,
+      formData,
+      isAuthenticated,
+    } = this.state
 
     return (
       <>
@@ -121,6 +142,7 @@ class App extends React.Component {
                         formData={formData}
                         handleFormChange={this.handleFormChange}
                         handleUserFormSubmit={this.handleUserFormSubmit}
+                        isAuthenticated={isAuthenticated}
                       />
                     )}
                   />
@@ -133,6 +155,7 @@ class App extends React.Component {
                         formData={formData}
                         handleFormChange={this.handleFormChange}
                         handleUserFormSubmit={this.handleUserFormSubmit}
+                        isAuthenticated={isAuthenticated}
                       />
                     )}
                   />
