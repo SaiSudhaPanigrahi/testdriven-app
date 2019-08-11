@@ -105,6 +105,12 @@ The React app is available at `http://localhost`.
 
 The users endpoint is available at `http://localhost/users`.
 
+If you get a compilation error in your React app (`Module not found: Can't resolve 'react-router-dom'`), install the package manually:
+
+```sh
+docker-compose exec client npm install react-router-dom
+```
+
 <!-- ROADMAP -->
 
 ## Roadmap
