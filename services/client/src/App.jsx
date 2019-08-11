@@ -6,15 +6,21 @@ import UsersList from './components/UsersList'
 import AddUser from './components/AddUser'
 import About from './components/About'
 import NavBar from './components/NavBar'
+import Form from './components/Form'
 
 class App extends React.Component {
-  constructor () {
+  constructor() {
     super()
     this.state = {
       users: [],
       username: '',
       email: '',
-      title: 'Testdriven App'
+      title: 'Testdriven App',
+      formData: {
+        username: '',
+        email: '',
+        password: '',
+      },
     }
   }
 
@@ -33,7 +39,7 @@ class App extends React.Component {
     event.preventDefault()
     const data = {
       username: this.state.username,
-      email: this.state.email
+      email: this.state.email,
     }
     axios
       .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`, data)
@@ -50,24 +56,24 @@ class App extends React.Component {
     this.setState(obj)
   }
 
-  render () {
-    const { users, username, email, title } = this.state
+  render() {
+    const { users, username, email, title, formData } = this.state
 
     return (
       <>
         <NavBar title={title} />
-        <section className='section'>
-          <div className='container'>
-            <div className='columns'>
-              <div className='column is-half'>
+        <section className="section">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-half">
                 <br />
                 <Switch>
                   <Route
                     exact
-                    path='/'
+                    path="/"
                     render={() => (
                       <div>
-                        <h1 className='title is-1'>All Users</h1>
+                        <h1 className="title is-1">All Users</h1>
                         <hr />
                         <br />
                         <AddUser
@@ -82,7 +88,22 @@ class App extends React.Component {
                       </div>
                     )}
                   />
-                  <Route exact path='/about' component={About} />
+                  <Route exact path="/about" component={About} />
+                  <Route
+                    exact
+                    path="/register"
+                    render={() => (
+                      <Form formType={'Register'} formData={formData} />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/login"
+                    render={() => (
+                      <Form formType={'Login'} formData={formData} />
+                    )}
+                  />
+                  )}
                 </Switch>
               </div>
             </div>
