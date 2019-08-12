@@ -8,6 +8,7 @@ import About from './components/About'
 import NavBar from './components/NavBar'
 import Form from './components/Form'
 import Logout from './components/Logout'
+import UserStatus from './components/UserStatus'
 
 class App extends React.Component {
   constructor() {
@@ -175,6 +176,7 @@ class App extends React.Component {
                       />
                     )}
                   />
+                  <Route exact path="/status" component={UserStatus} />
                 </Switch>
               </div>
             </div>
