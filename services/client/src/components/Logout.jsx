@@ -5,11 +5,11 @@ class Logout extends React.Component {
   componentDidMount = () => {
     this.props.logoutUser()
   }
-  render() {
+  render () {
     return (
       <div>
         <p>
-          You are now logged out. Click <Link to="/login">here</Link> to log
+          You are now logged out. Click <Link to='/login'>here</Link> to log
           back in.
         </p>
       </div>

@@ -12,23 +12,23 @@ const testData = [
     formData: {
       username: '',
       email: '',
-      password: '',
+      password: ''
     },
     handleUserFormSubmit: jest.fn(),
     handleFormChange: jest.fn(),
-    isAuthenticated: false,
+    isAuthenticated: false
   },
   {
     formType: 'Login',
     title: 'Log In',
     formData: {
       email: '',
-      password: '',
+      password: ''
     },
     handleUserFormSubmit: jest.fn(),
     handleFormChange: jest.fn(),
-    isAuthenticated: false,
-  },
+    isAuthenticated: false
+  }
 ]
 
 describe('When not authenticated', () => {

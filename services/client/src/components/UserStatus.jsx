@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class UserStatus extends React.Component {
   constructor (props) {
@@ -12,10 +13,12 @@ class UserStatus extends React.Component {
   }
 
   componentDidMount = () => {
-    this.getUserStatus()
+    if (this.props.isAuthenticated) {
+      this.getUserStatus()
+    }
   }
 
-  getUserStatus = event => {
+  getUserStatus = () => {
     const options = {
       url: `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/status`,
       method: 'get',
@@ -37,6 +40,14 @@ class UserStatus extends React.Component {
   }
 
   render () {
+    if (!this.props.isAuthenticated) {
+      return (
+        <p>
+          You must be logged in to view this page. Click{' '}
+          <Link to='/login'>here</Link> to log back in.
+        </p>
+      )
+    }
     return (
       <div>
         <ul>

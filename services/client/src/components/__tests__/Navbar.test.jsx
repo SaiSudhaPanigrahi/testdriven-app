@@ -17,7 +17,7 @@ test('NavBar renders properly', () => {
 test('NavBar renders a snapshot properly', () => {
   const tree = renderer
     .create(
-      <Router location="/">
+      <Router location='/'>
         <NavBar title={title} />
       </Router>
     )

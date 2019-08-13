@@ -11,7 +11,7 @@ import Logout from './components/Logout'
 import UserStatus from './components/UserStatus'
 
 class App extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       users: [],
@@ -21,9 +21,9 @@ class App extends React.Component {
       formData: {
         username: '',
         email: '',
-        password: '',
+        password: ''
       },
-      isAuthenticated: false,
+      isAuthenticated: false
     }
   }
 
@@ -42,7 +42,7 @@ class App extends React.Component {
     event.preventDefault()
     const data = {
       username: this.state.username,
-      email: this.state.email,
+      email: this.state.email
     }
     axios
       .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`, data)
@@ -70,7 +70,7 @@ class App extends React.Component {
     const formType = window.location.href.split('/').reverse()[0]
     let data = {
       email: this.state.formData.email,
-      password: this.state.formData.password,
+      password: this.state.formData.password
     }
     if (formType === 'register') {
       data.username = this.state.formData.username
@@ -91,7 +91,7 @@ class App extends React.Component {
     this.setState({
       formData: { username: '', email: '', password: '' },
       username: '',
-      email: '',
+      email: ''
     })
   }
 
@@ -100,31 +100,31 @@ class App extends React.Component {
     this.setState({ isAuthenticated: false })
   }
 
-  render() {
+  render () {
     const {
       users,
       username,
       email,
       title,
       formData,
-      isAuthenticated,
+      isAuthenticated
     } = this.state
 
     return (
       <>
-        <NavBar title={title} />
-        <section className="section">
-          <div className="container">
-            <div className="columns">
-              <div className="column is-half">
+        <NavBar title={title} isAuthenticated={isAuthenticated} />
+        <section className='section'>
+          <div className='container'>
+            <div className='columns'>
+              <div className='column is-half'>
                 <br />
                 <Switch>
                   <Route
                     exact
-                    path="/"
+                    path='/'
                     render={() => (
                       <div>
-                        <h1 className="title is-1">All Users</h1>
+                        <h1 className='title is-1'>All Users</h1>
                         <hr />
                         <br />
                         <AddUser
@@ -139,10 +139,10 @@ class App extends React.Component {
                       </div>
                     )}
                   />
-                  <Route exact path="/about" component={About} />
+                  <Route exact path='/about' component={About} />
                   <Route
                     exact
-                    path="/register"
+                    path='/register'
                     render={() => (
                       <Form
                         formType={'Register'}
@@ -155,7 +155,7 @@ class App extends React.Component {
                   />
                   <Route
                     exact
-                    path="/login"
+                    path='/login'
                     render={() => (
                       <Form
                         formType={'Login'}
@@ -168,7 +168,7 @@ class App extends React.Component {
                   />
                   <Route
                     exact
-                    path="/logout"
+                    path='/logout'
                     render={() => (
                       <Logout
                         logoutUser={this.logoutUser}
@@ -176,7 +176,13 @@ class App extends React.Component {
                       />
                     )}
                   />
-                  <Route exact path="/status" component={UserStatus} />
+                  <Route
+                    exact
+                    path='/status'
+                    render={() => (
+                      <UserStatus isAuthenticated={isAuthenticated} />
+                    )}
+                  />
                 </Switch>
               </div>
             </div>
