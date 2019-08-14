@@ -4,6 +4,7 @@ from sqlalchemy import exc
 
 from project import db
 from project.api.models import User
+from project.api.utils import authenticate_restful
 
 users_blueprint = Blueprint("users", __name__, template_folder="./templates")
 api = Api(users_blueprint)
@@ -18,7 +19,10 @@ api.add_resource(UsersPing, "/users/ping")
 
 
 class UsersList(Resource):
-    def post(self):
+
+    method_decorators = {"post": [authenticate_restful]}
+
+    def post(self, resp):
         post_data = request.get_json()
         response_object = {"status": "fail", "message": "Invalid payload."}
         if not post_data:

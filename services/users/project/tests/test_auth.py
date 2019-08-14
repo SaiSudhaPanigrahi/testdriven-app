@@ -253,6 +253,27 @@ class TestAuthBlueprint(BaseTestCase):
             self.assertTrue(data["status"] == "fail")
             self.assertTrue(data["message"] == "Invalid token. Please login again.")
 
+    def test_invalid_status_inactive(self):
+        add_user("test", "test@test.com", "testpass123")
+        # update user
+        user = User.query.filter_by(email="test@test.com").first()
+        user.active = False
+        db.session.commit()
+        with self.client:
+            resp_login = self.client.post(
+                "/auth/login",
+                data=json.dumps({"email": "test@test.com", "password": "testpass123"}),
+                content_type="application/json",
+            )
+            token = json.loads(resp_login.data.decode())["auth_token"]
+            response = self.client.get(
+                "/auth/status", headers={"Authorization": f"Bearer {token}"}
+            )
+            data = json.loads(response.data.decode())
+            self.assertTrue(data["status"] == "fail")
+            self.assertTrue(data["message"] == "Provide a valid auth token.")
+            self.assertEqual(response.status_code, 401)
+
 
 if __name__ == "__main__":
     unittest.main()
