@@ -2,6 +2,13 @@
 
 exports[`UsersList renders a snapshot properly 1`] = `
 <div>
+  <h1
+    className="title is-1"
+  >
+    All Users
+  </h1>
+  <hr />
+  <br />
   <h4
     className="box title is-4"
   >

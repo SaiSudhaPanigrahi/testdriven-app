@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Route, Switch } from 'react-router-dom'
 
 import UsersList from './components/UsersList'
-import AddUser from './components/AddUser'
 import About from './components/About'
 import NavBar from './components/NavBar'
 import Form from './components/Form'
@@ -124,17 +123,6 @@ class App extends React.Component {
                     path='/'
                     render={() => (
                       <div>
-                        <h1 className='title is-1'>All Users</h1>
-                        <hr />
-                        <br />
-                        <AddUser
-                          addUser={this.addUser}
-                          username={username}
-                          email={email}
-                          handleChange={this.handleChange}
-                        />
-                        <br />
-                        <hr />
                         <UsersList users={users} />
                       </div>
                     )}
