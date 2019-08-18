@@ -100,14 +100,7 @@ class App extends React.Component {
   }
 
   render () {
-    const {
-      users,
-      username,
-      email,
-      title,
-      formData,
-      isAuthenticated
-    } = this.state
+    const { users, title, formData, isAuthenticated } = this.state
 
     return (
       <>
