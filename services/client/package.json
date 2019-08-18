@@ -19,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier-standard 'src/*.js*' && prettier-standard 'src/components/*.js*'"
+    "format": "prettier-standard 'src/*.js*' && prettier-standard 'src/components/*.js*'",
+    "coverage": "CI=true react-scripts test --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
