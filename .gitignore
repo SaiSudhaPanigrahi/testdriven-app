@@ -3,3 +3,4 @@ env
 tags
 services/users/htmlcov
 tags
+node_modules/
