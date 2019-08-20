@@ -10,7 +10,7 @@ class UserStatus extends React.Component {
       id: '',
       username: '',
       active: '',
-      admin: ''
+      admin: '',
     }
   }
 
@@ -26,8 +26,8 @@ class UserStatus extends React.Component {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${window.localStorage.authToken}`
-      }
+        Authorization: `Bearer ${window.localStorage.authToken}`,
+      },
     }
 
     return axios(options)
@@ -37,7 +37,7 @@ class UserStatus extends React.Component {
           id: res.data.data.id,
           username: res.data.data.username,
           active: String(res.data.data.active),
-          admin: String(res.data.data.admin)
+          admin: String(res.data.data.admin),
         })
       })
       .catch(err => console.error(err))

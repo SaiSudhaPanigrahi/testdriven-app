@@ -12,6 +12,7 @@ import UserStatus from './components/UserStatus'
 class App extends React.Component {
   constructor () {
     super()
+    let authStatus = this.handleCheckTokenExists()
     this.state = {
       users: [],
       username: '',
@@ -20,14 +21,18 @@ class App extends React.Component {
       formData: {
         username: '',
         email: '',
-        password: ''
+        password: '',
       },
-      isAuthenticated: false
+      isAuthenticated: authStatus,
     }
   }
 
   componentDidMount = () => {
     this.getUsers()
+  }
+
+  handleCheckTokenExists = () => {
+    return window.localStorage.getItem('authToken') !== null
   }
 
   getUsers = () => {
@@ -41,7 +46,7 @@ class App extends React.Component {
     event.preventDefault()
     const data = {
       username: this.state.username,
-      email: this.state.email
+      email: this.state.email,
     }
     axios
       .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`, data)
@@ -69,7 +74,7 @@ class App extends React.Component {
     const formType = window.location.href.split('/').reverse()[0]
     let data = {
       email: this.state.formData.email,
-      password: this.state.formData.password
+      password: this.state.formData.password,
     }
     if (formType === 'register') {
       data.username = this.state.formData.username
@@ -90,7 +95,7 @@ class App extends React.Component {
     this.setState({
       formData: { username: '', email: '', password: '' },
       username: '',
-      email: ''
+      email: '',
     })
   }
 
