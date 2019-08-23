@@ -18,11 +18,6 @@ class App extends React.Component {
       username: '',
       email: '',
       title: 'Testdriven App',
-      formData: {
-        username: '',
-        email: '',
-        password: '',
-      },
       isAuthenticated: authStatus,
     }
   }
@@ -42,61 +37,10 @@ class App extends React.Component {
       .catch(err => console.error(err))
   }
 
-  addUser = event => {
-    event.preventDefault()
-    const data = {
-      username: this.state.username,
-      email: this.state.email,
-    }
-    axios
-      .post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`, data)
-      .then(() => {
-        this.getUsers()
-        this.setState({ username: '', email: '' })
-      })
-      .catch(err => console.log(err))
-  }
-
-  handleChange = event => {
-    const obj = {}
-    obj[event.target.name] = event.target.value
-    this.setState(obj)
-  }
-
-  handleFormChange = event => {
-    const obj = this.state.formData
-    obj[event.target.name] = event.target.value
-    this.setState(obj)
-  }
-
-  handleUserFormSubmit = event => {
-    event.preventDefault()
-    const formType = window.location.href.split('/').reverse()[0]
-    let data = {
-      email: this.state.formData.email,
-      password: this.state.formData.password,
-    }
-    if (formType === 'register') {
-      data.username = this.state.formData.username
-    }
-    const url = `${process.env.REACT_APP_USERS_SERVICE_URL}/auth/${formType}`
-    axios
-      .post(url, data)
-      .then(res => {
-        this.clearFormState()
-        window.localStorage.setItem('authToken', res.data.auth_token)
-        this.setState({ isAuthenticated: true })
-        this.getUsers()
-      })
-      .catch(err => console.error(err))
-  }
-
-  clearFormState = () => {
-    this.setState({
-      formData: { username: '', email: '', password: '' },
-      username: '',
-      email: '',
-    })
+  loginUser = token => {
+    window.localStorage.setItem('authToken', token)
+    this.setState({ isAuthenticated: true })
+    this.getUsers()
   }
 
   logoutUser = () => {
@@ -105,7 +49,7 @@ class App extends React.Component {
   }
 
   render () {
-    const { users, title, formData, isAuthenticated } = this.state
+    const { users, title, isAuthenticated } = this.state
 
     return (
       <>
@@ -132,10 +76,8 @@ class App extends React.Component {
                     render={() => (
                       <Form
                         formType={'Register'}
-                        formData={formData}
-                        handleFormChange={this.handleFormChange}
-                        handleUserFormSubmit={this.handleUserFormSubmit}
                         isAuthenticated={isAuthenticated}
+                        loginUser={this.loginUser}
                       />
                     )}
                   />
@@ -145,10 +87,8 @@ class App extends React.Component {
                     render={() => (
                       <Form
                         formType={'Login'}
-                        formData={formData}
-                        handleFormChange={this.handleFormChange}
-                        handleUserFormSubmit={this.handleUserFormSubmit}
                         isAuthenticated={isAuthenticated}
+                        loginUser={this.loginUser}
                       />
                     )}
                   />
