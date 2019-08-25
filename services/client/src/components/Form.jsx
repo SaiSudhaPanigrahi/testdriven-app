@@ -11,6 +11,7 @@ class Form extends React.Component {
         email: '',
         password: '',
       },
+      valid: false,
       formType: null,
     }
 
@@ -37,6 +38,10 @@ class Form extends React.Component {
     return null
   }
 
+  validateForm () {
+    this.setState({ valid: true })
+  }
+
   clearForm () {
     this.setState({
       formData: { username: '', email: '', password: '' },
@@ -47,6 +52,7 @@ class Form extends React.Component {
     const obj = this.state.formData
     obj[event.target.name] = event.target.value
     this.setState(obj)
+    this.validateForm()
   }
 
   handleUserFormSubmit (event) {
@@ -126,6 +132,7 @@ class Form extends React.Component {
             type='submit'
             className='button is-primary is-medium is-fullwidth'
             value='Submit'
+            disabled={!this.state.valid}
           />
         </form>
       </div>

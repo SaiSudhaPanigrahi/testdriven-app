@@ -9,6 +9,7 @@ describe('Login', () => {
       .get('h1')
       .contains('Log In')
       .get('form')
+      .get('input[disabled]')
   })
   it('should allow a user to login', () => {
     // register user

@@ -11,26 +11,31 @@ const testData = [
     formData: {
       username: '',
       email: '',
-      password: ''
+      password: '',
     },
     loginUser: jest.fn(),
-    isAuthenticated: false
+    isAuthenticated: false,
   },
   {
     formType: 'Login',
     title: 'Log In',
     formData: {
       email: '',
-      password: ''
+      password: '',
     },
     loginUser: jest.fn(),
-    isAuthenticated: false
-  }
+    isAuthenticated: false,
+  },
 ]
 
 describe('When not authenticated', () => {
   testData.forEach(el => {
     const component = <Form {...el} />
+    it(`${el.formType} Form should be disabled by default`, () => {
+      const wrapper = shallow(component)
+      const input = wrapper.find('input[type="submit"]')
+      expect(input.get(0).props.disabled).toEqual(true)
+    })
     it(`${el.formType} Form renders properly`, () => {
       const wrapper = shallow(component)
       const h1 = wrapper.find('h1')
@@ -50,7 +55,7 @@ describe('When not authenticated', () => {
       const input = wrapper.find('input[type="email"]')
       expect(wrapper.instance().handleUserFormSubmit).toHaveBeenCalledTimes(0)
       input.simulate('change', {
-        target: { name: 'email', value: 'test@test.com' }
+        target: { name: 'email', value: 'test@test.com' },
       })
       wrapper.find('form').simulate('submit', el.formData)
       expect(wrapper.instance().handleUserFormSubmit).toHaveBeenCalledWith(
