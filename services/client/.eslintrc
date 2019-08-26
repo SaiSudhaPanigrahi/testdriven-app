@@ -9,7 +9,7 @@
     }
   },
   "plugins": ["prettier"],
-  "extends": ["prettier"],
+  "extends": ["airbnb", "prettier"],
   "rules": {
     "prettier/prettier": "error"
   }

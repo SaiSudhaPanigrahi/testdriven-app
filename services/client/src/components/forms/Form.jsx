@@ -2,8 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
+import FormErrors from './FormErrors.jsx'
+import { registerFormRules, loginFormRules } from './form-rules'
+
 class Form extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       formData: {
@@ -12,6 +15,8 @@ class Form extends React.Component {
         password: '',
       },
       valid: false,
+      registerFormRules: registerFormRules,
+      loginFormRules: loginFormRules,
       formType: null,
     }
 
@@ -19,11 +24,11 @@ class Form extends React.Component {
     this.handleFormChange = this.handleFormChange.bind(this)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.clearForm()
   }
 
-  static getDerivedStateFromProps (props, state) {
+  static getDerivedStateFromProps(props, state) {
     if (props.formType !== state.formType) {
       return {
         formData: {
@@ -38,24 +43,24 @@ class Form extends React.Component {
     return null
   }
 
-  validateForm () {
+  validateForm() {
     this.setState({ valid: true })
   }
 
-  clearForm () {
+  clearForm() {
     this.setState({
       formData: { username: '', email: '', password: '' },
     })
   }
 
-  handleFormChange (event) {
+  handleFormChange(event) {
     const obj = this.state.formData
     obj[event.target.name] = event.target.value
     this.setState(obj)
     this.validateForm()
   }
 
-  handleUserFormSubmit (event) {
+  handleUserFormSubmit(event) {
     event.preventDefault()
     const formType = this.props.formType
     const data = {
@@ -77,61 +82,66 @@ class Form extends React.Component {
       .catch(err => console.error(err))
   }
 
-  render () {
-    if (this.props.isAuthenticated) return <Redirect to='/' />
+  render() {
+    if (this.props.isAuthenticated) return <Redirect to="/" />
+    let formRules = this.state.loginFormRules
+    if (this.props.formType === 'Register') {
+      formRules = this.state.registerFormRules
+    }
     return (
       <div>
         {this.props.formType === 'Login' && (
-          <h1 className='title is-1'>Log In</h1>
+          <h1 className="title is-1">Log In</h1>
         )}
         {this.props.formType === 'Register' && (
-          <h1 className='title is-1'>Register</h1>
+          <h1 className="title is-1">Register</h1>
         )}
         <hr />
         <br />
+        <FormErrors formType={this.props.formType} formRules={formRules} />
         <form
-          method='post'
+          method="post"
           onSubmit={event => this.handleUserFormSubmit(event)}
         >
           {this.props.formType === 'Register' && (
-            <div className='field'>
+            <div className="field">
               <input
-                name='username'
-                className='input is-medium'
-                type='text'
-                placeholder='Enter a username'
+                name="username"
+                className="input is-medium"
+                type="text"
+                placeholder="Enter a username"
                 required
                 value={this.state.formData.username}
                 onChange={this.handleFormChange}
               />
             </div>
           )}
-          <div className='field'>
+          <div className="field">
             <input
-              name='email'
-              className='input is-medium'
-              type='email'
-              placeholder='Enter an email address'
+              name="email"
+              className="input is-medium"
+              type="email"
+              placeholder="Enter an email address"
               required
               value={this.state.formData.email}
               onChange={this.handleFormChange}
             />
           </div>
-          <div className='field'>
+          <div className="field">
             <input
-              name='password'
-              className='input is-medium'
-              type='password'
-              placeholder='Enter a password'
+              name="password"
+              className="input is-medium"
+              type="password"
+              placeholder="Enter a password"
               required
               value={this.state.formData.password}
               onChange={this.handleFormChange}
             />
           </div>
           <input
-            type='submit'
-            className='button is-primary is-medium is-fullwidth'
-            value='Submit'
+            type="submit"
+            className="button is-primary is-medium is-fullwidth"
+            value="Submit"
             disabled={!this.state.valid}
           />
         </form>

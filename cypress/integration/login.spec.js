@@ -10,6 +10,10 @@ describe('Login', () => {
       .contains('Log In')
       .get('form')
       .get('input[disabled]')
+      .get('.validation-list')
+      .get('.validation-list > .error')
+      .first()
+      .contains('Email is required.')
   })
   it('should allow a user to login', () => {
     // register user
