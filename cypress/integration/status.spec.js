@@ -8,7 +8,7 @@ describe('Status', () => {
   it('should not display user info if a user is not logged in', () => {
     cy.visit('/status')
       .get('p')
-      .contains('You must be logged in to view this.')
+      .contains('You must be logged in to view this')
       .get('a')
       .contains('User Status')
       .should('not.be.visible')
