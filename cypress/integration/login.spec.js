@@ -2,6 +2,7 @@ const randomstring = require('randomstring')
 
 const username = randomstring.generate()
 const email = `${username}@test.com`
+const password = 'greaterthanten'
 
 describe('Login', () => {
   it('should display the login form', () => {
@@ -23,7 +24,7 @@ describe('Login', () => {
       .get('input[name="email"]')
       .type(email)
       .get('input[name="password"]')
-      .type('test')
+      .type(password)
       .get('input[type="submit"]')
       .click()
 
@@ -38,7 +39,7 @@ describe('Login', () => {
       .get('input[name="email"]')
       .type(email)
       .get('input[name="password"]')
-      .type('test')
+      .type(password)
       .get('input[type="submit"]')
       .click()
       .wait(1000)

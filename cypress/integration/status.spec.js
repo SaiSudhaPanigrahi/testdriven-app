@@ -2,12 +2,13 @@ const randomstring = require('randomstring')
 
 const username = randomstring.generate()
 const email = `${username}@test.com`
+const password = 'greaterthanten'
 
 describe('Status', () => {
   it('should not display user info if a user is not logged in', () => {
     cy.visit('/status')
       .get('p')
-      .contains('You must be logged in to view this page.')
+      .contains('You must be logged in to view this.')
       .get('a')
       .contains('User Status')
       .should('not.be.visible')
@@ -28,7 +29,7 @@ describe('Status', () => {
       .get('input[name="email"]')
       .type(email)
       .get('input[name="password"]')
-      .type('test')
+      .type(password)
       .get('input[type="submit"]')
       .click()
       .get('.navbar-burger')

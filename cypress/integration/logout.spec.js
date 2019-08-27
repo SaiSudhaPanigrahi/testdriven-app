@@ -2,6 +2,7 @@ const randomstring = require('randomstring')
 
 const username = randomstring.generate()
 const email = `${username}@test.com`
+const password = 'greaterthanten'
 
 it('should allow a user to sign in', () => {
   // register user
@@ -11,7 +12,7 @@ it('should allow a user to sign in', () => {
     .get('input[name="email"]')
     .type(email)
     .get('input[name="password"]')
-    .type('test')
+    .type(password)
     .get('input[type="submit"]')
     .click()
 
@@ -26,7 +27,7 @@ it('should allow a user to sign in', () => {
     .get('input[name="email"]')
     .type(email)
     .get('input[name="password"]')
-    .type('test')
+    .type(password)
     .get('input[type="submit"]')
     .click()
     .wait(100)

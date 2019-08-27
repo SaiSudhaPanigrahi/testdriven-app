@@ -10,7 +10,7 @@ import Logout from './components/Logout'
 import UserStatus from './components/UserStatus'
 
 class App extends React.Component {
-  constructor () {
+  constructor() {
     super()
     let authStatus = this.handleCheckTokenExists()
     this.state = {
@@ -48,34 +48,36 @@ class App extends React.Component {
     this.setState({ isAuthenticated: false })
   }
 
-  render () {
+  render() {
     const { users, title, isAuthenticated } = this.state
 
     return (
       <>
         <NavBar title={title} isAuthenticated={isAuthenticated} />
-        <section className='section'>
-          <div className='container'>
-            <div className='columns'>
-              <div className='column is-half'>
+        <section className="section">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-half">
                 <br />
                 <Switch>
                   <Route
                     exact
-                    path='/'
+                    path="/"
                     render={() => (
                       <div>
                         <UsersList users={users} />
                       </div>
                     )}
                   />
-                  <Route exact path='/about' component={About} />
+                  <Route exact path="/about" component={About} />
                   <Route
                     exact
-                    path='/register'
+                    path="/register"
                     render={() => (
                       <Form
                         formType={'Register'}
+                        // use as `key` to reset Form
+                        key={isAuthenticated}
                         isAuthenticated={isAuthenticated}
                         loginUser={this.loginUser}
                       />
@@ -83,10 +85,12 @@ class App extends React.Component {
                   />
                   <Route
                     exact
-                    path='/login'
+                    path="/login"
                     render={() => (
                       <Form
                         formType={'Login'}
+                        // use as `key` to reset Form
+                        key={isAuthenticated}
                         isAuthenticated={isAuthenticated}
                         loginUser={this.loginUser}
                       />
@@ -94,7 +98,7 @@ class App extends React.Component {
                   />
                   <Route
                     exact
-                    path='/logout'
+                    path="/logout"
                     render={() => (
                       <Logout
                         logoutUser={this.logoutUser}
@@ -104,7 +108,7 @@ class App extends React.Component {
                   />
                   <Route
                     exact
-                    path='/status'
+                    path="/status"
                     render={() => (
                       <UserStatus isAuthenticated={isAuthenticated} />
                     )}

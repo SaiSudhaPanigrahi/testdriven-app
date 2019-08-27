@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const NavBar = ({ title, isAuthenticated }) => (
+const NavBar = ({ location, title, isAuthenticated }) => (
   <nav
-    className='navbar is-dark'
-    role='navigation'
-    aria-label='main navigation'
+    className="navbar is-dark"
+    role="navigation"
+    aria-label="main navigation"
   >
-    <section className='container'>
-      <div className='navbar-brand'>
-        <strong className='navbar-item'>{title}</strong>
+    <section className="container">
+      <div className="navbar-brand">
+        <strong className="navbar-item">{title}</strong>
         <span
-          className='nav-toggle navbar-burger'
+          className="nav-toggle navbar-burger"
           onClick={() => {
             let toggle = document.querySelector('.nav-toggle')
             let menu = document.querySelector('.navbar-menu')
@@ -24,32 +24,32 @@ const NavBar = ({ title, isAuthenticated }) => (
           <span />
         </span>
       </div>
-      <div className='navbar-menu'>
-        <div className='navbar-start'>
-          <Link to='/' className='navbar-item'>
+      <div className="navbar-menu">
+        <div className="navbar-start">
+          <Link to="/" className="navbar-item">
             Home
           </Link>
-          <Link to='/about' className='navbar-item'>
+          <Link to="/about" className="navbar-item">
             About
           </Link>
           {isAuthenticated && (
-            <Link to='/status' className='navbar-item'>
+            <Link to="/status" className="navbar-item">
               User Status
             </Link>
           )}
         </div>
-        <div className='navbar-end'>
+        <div className="navbar-end">
           {!isAuthenticated ? (
             <>
-              <Link to='/register' className='navbar-item'>
+              <Link to="/register" className="navbar-item">
                 Register
               </Link>
-              <Link to='/login' className='navbar-item'>
+              <Link to="/login" className="navbar-item">
                 Log In
               </Link>
             </>
           ) : (
-            <Link to='/logout' className='navbar-item'>
+            <Link to="/logout" className="navbar-item">
               Log Out
             </Link>
           )}
