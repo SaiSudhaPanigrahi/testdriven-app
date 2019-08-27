@@ -17,8 +17,6 @@ docker-compose exec users black .
 inspect $? users-fix
 docker-compose exec users flake8 project
 inspect $? users-lint
-docker-compose exec client npm run format
-inspect $? client-format
 docker-compose exec client npm run coverage
 inspect $? client
 docker-compose down

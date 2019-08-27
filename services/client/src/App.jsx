@@ -12,7 +12,6 @@ import UserStatus from './components/UserStatus'
 class App extends React.Component {
   constructor() {
     super()
-    let authStatus = this.handleCheckTokenExists()
     this.state = {
       users: [],
       username: '',
@@ -26,8 +25,10 @@ class App extends React.Component {
     this.getUsers()
   }
 
-  handleCheckTokenExists = () => {
-    return window.localStorage.getItem('authToken') !== null
+  componentWillMount() {
+    if (window.localStorage.getItem('authToken')) {
+      this.setState({ isAuthenticated: true })
+    }
   }
 
   getUsers = () => {
