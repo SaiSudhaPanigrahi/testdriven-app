@@ -16,4 +16,4 @@ USER node
 RUN npm ci
 
 # start app
-CMD ["npm", "start", "--host", "0.0.0.0"]
+CMD ["npm", "start"]

@@ -12,38 +12,41 @@ import UserStatus from './components/UserStatus'
 class App extends React.Component {
   constructor() {
     super()
-    let authStatus = this.handleCheckTokenExists()
     this.state = {
       users: [],
       username: '',
       email: '',
       title: 'Testdriven App',
-      isAuthenticated: authStatus,
+      isAuthenticated: false,
     }
+    this.logoutUser = this.logoutUser.bind(this)
+    this.loginUser = this.loginUser.bind(this)
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.getUsers()
   }
 
-  handleCheckTokenExists = () => {
-    return window.localStorage.getItem('authToken') !== null
+  componentWillMount() {
+    if (window.localStorage.getItem('authToken')) {
+      this.setState({ isAuthenticated: true })
+    }
   }
 
-  getUsers = () => {
+  getUsers() {
     axios
       .get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
       .then(res => this.setState({ users: res.data.data.users }))
       .catch(err => console.error(err))
   }
 
-  loginUser = token => {
+  loginUser(token) {
     window.localStorage.setItem('authToken', token)
     this.setState({ isAuthenticated: true })
     this.getUsers()
   }
 
-  logoutUser = () => {
+  logoutUser() {
     window.localStorage.clear()
     this.setState({ isAuthenticated: false })
   }
@@ -76,8 +79,6 @@ class App extends React.Component {
                     render={() => (
                       <Form
                         formType={'Register'}
-                        // use as `key` to reset Form
-                        key={isAuthenticated}
                         isAuthenticated={isAuthenticated}
                         loginUser={this.loginUser}
                       />
@@ -89,8 +90,6 @@ class App extends React.Component {
                     render={() => (
                       <Form
                         formType={'Login'}
-                        // use as `key` to reset Form
-                        key={isAuthenticated}
                         isAuthenticated={isAuthenticated}
                         loginUser={this.loginUser}
                       />

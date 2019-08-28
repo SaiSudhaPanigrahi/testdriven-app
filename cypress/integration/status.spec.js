@@ -32,6 +32,7 @@ describe('Status', () => {
       .type(password)
       .get('input[type="submit"]')
       .click()
+      .wait(500)
       .get('.navbar-burger')
       .click()
 

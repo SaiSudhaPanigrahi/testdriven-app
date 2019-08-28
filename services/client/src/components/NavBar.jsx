@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const NavBar = ({ location, title, isAuthenticated }) => (
+const NavBar = ({ title, isAuthenticated }) => (
   <nav
     className="navbar is-dark"
     role="navigation"

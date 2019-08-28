@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 class Logout extends React.Component {
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.logoutUser()
   }
-  render () {
+  render() {
     return (
       <div>
         <p>
-          You are now logged out. Click <Link to='/login'>here</Link> to log
+          You are now logged out. Click <Link to="/login">here</Link> to log
           back in.
         </p>
       </div>
