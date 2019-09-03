@@ -24,6 +24,7 @@ class App extends React.Component {
     }
     this.logoutUser = this.logoutUser.bind(this)
     this.loginUser = this.loginUser.bind(this)
+    this.createMessage = this.createMessage.bind(this)
   }
 
   componentDidMount() {
@@ -98,6 +99,7 @@ class App extends React.Component {
                         formType={'Register'}
                         isAuthenticated={isAuthenticated}
                         loginUser={this.loginUser}
+                        createMessage={this.createMessage}
                       />
                     )}
                   />
@@ -109,6 +111,7 @@ class App extends React.Component {
                         formType={'Login'}
                         isAuthenticated={isAuthenticated}
                         loginUser={this.loginUser}
+                        createMessage={this.createMessage}
                       />
                     )}
                   />
