@@ -21,5 +21,7 @@ describe('Index', () => {
       .contains('Register')
       .get('a')
       .contains('Log In')
+      .get('.notification.is-success')
+      .should('not.be.visible')
   })
 })
