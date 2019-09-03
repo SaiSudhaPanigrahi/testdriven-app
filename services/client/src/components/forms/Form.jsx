@@ -126,7 +126,14 @@ class Form extends React.Component {
         this.clearForm()
         this.props.loginUser(res.data.auth_token)
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        if (formType === 'Login') {
+          this.props.createMessage('Login failed.', 'danger')
+        }
+        if (formType === 'Register') {
+          this.props.createMessage('That user already exists.', 'danger')
+        }
+      })
   }
 
   render() {
