@@ -19,12 +19,13 @@ server() {
   inspect $? users-fix
   docker-compose exec users flake8 project
   inspect $? users-lint
+  docker-compose-down
 }
 
 # run client-side tests
 client() {
   docker-compose up -d --build
-  docker-compose exec client npm run coverage
+  docker-compose exec client npm test -- --verbose
   inspect $? client
   docker-compose down
 }
@@ -74,9 +75,11 @@ fi
 
 # return proper code
 if [ -n "${fails}" ]; then
+  echo "\n"
   echo "Tests failed: ${fails}"
   exit 1
 else
+  echo "\n"
   echo "Tests passed!"
   exit 0
 fi
