@@ -126,7 +126,7 @@ class Form extends React.Component {
         this.clearForm()
         this.props.loginUser(res.data.auth_token)
       })
-      .catch(err => {
+      .catch(_err => {
         if (formType === 'Login') {
           this.props.createMessage('Login failed.', 'danger')
         }

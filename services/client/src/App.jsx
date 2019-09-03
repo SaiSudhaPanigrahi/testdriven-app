@@ -25,6 +25,7 @@ class App extends React.Component {
     this.logoutUser = this.logoutUser.bind(this)
     this.loginUser = this.loginUser.bind(this)
     this.createMessage = this.createMessage.bind(this)
+    this.removeMessage = this.removeMessage.bind(this)
   }
 
   componentDidMount() {
@@ -48,7 +49,7 @@ class App extends React.Component {
     window.localStorage.setItem('authToken', token)
     this.setState({ isAuthenticated: true })
     this.getUsers()
-    this.createMessage('Welcome', 'success')
+    this.createMessage('Welcome!', 'success')
   }
 
   logoutUser() {
@@ -60,6 +61,16 @@ class App extends React.Component {
     this.setState({
       messageName: name,
       messageType: type,
+    })
+    setTimeout(() => {
+      this.removeMessage()
+    }, 3000)
+  }
+
+  removeMessage() {
+    this.setState({
+      messageName: null,
+      messageType: null,
     })
   }
 
@@ -75,6 +86,7 @@ class App extends React.Component {
               <Message
                 messageName={this.state.messageName}
                 messageType={this.state.messageType}
+                removeMessage={this.removeMessage}
               />
             )}
             <div className="columns">
