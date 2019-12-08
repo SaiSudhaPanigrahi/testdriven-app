@@ -1,31 +1,51 @@
 # base image
-FROM python:3.7.5-slim-buster
+FROM python:3.7.5-slim-buster as compile-image
 
 # install dependencies
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y netcat-openbsd gcc && \
-    apt-get clean
+    apt-get install -y --no-install-recommends gcc
+
+# virtualenv
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# add and install requirements
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
+
+# build-image
+FROM python:3.7.5-slim-buster AS runtime-image
+
+# install nc
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends netcat-openbsd
+
+# copy Python dependencies from build image
+COPY --from=compile-image /opt/venv /opt/venv
 
 # set working directory
 WORKDIR /usr/src/app
 
-# add and install requirements
-RUN pip install --upgrade pip
-COPY ./requirements.txt /usr/src/app/requirements.txt
-RUN pip install -r requirements.txt
+# add user
+RUN addgroup --system user && adduser --system --no-create-home --group user
+RUN chown -R user:user /usr/src/app && chmod -R 755 /usr/src/app
 
 # add entrypoint.sh
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
 
+# switch to non-root user
+USER user
+
 # add app
 COPY . /usr/src/app
 
-# add user
-RUN addgroup --system user && adduser --system --no-create-home --group user
-RUN chown -R user:user /usr/src/app && chmod -R 755 /usr/src/app
-USER user
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV PATH="/opt/venv/bin:$PATH"
 
 # run server
 CMD ["/usr/src/app/entrypoint.sh"]
