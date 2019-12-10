@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import renderer from 'react-test-renderer'
+import toJson from 'enzyme-to-json'
 
 import AddUser from '../AddUser'
 
@@ -14,6 +14,6 @@ test('AddUser renders properly', () => {
 })
 
 test('Adduser renders a snapshot properly', () => {
-  const tree = renderer.create(<AddUser />).toJSON()
-  expect(tree).toMatchSnapshot()
+  const tree = shallow(<AddUser />)
+  expect(toJson(tree)).toMatchSnapshot()
 })

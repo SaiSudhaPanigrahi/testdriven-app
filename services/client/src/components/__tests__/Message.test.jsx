@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import renderer from 'react-test-renderer'
+import toJson from 'enzyme-to-json'
 
 import Message from '../Message'
 
@@ -30,8 +30,8 @@ describe('When given a success message', () => {
   })
 
   test('Message renders a snapshot properly', () => {
-    const tree = renderer.create(<Message {...messageSuccessProps} />).toJSON()
-    expect(tree).toMatchSnapshot()
+    const wrapper = shallow(<Message {...messageSuccessProps} />)
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 })
 
@@ -59,7 +59,7 @@ describe('When given a danger message', () => {
   })
 
   test('Message renders a snapshot properly', () => {
-    const tree = renderer.create(<Message {...messageDangerProps} />).toJSON()
+    const tree = shallow(<Message {...messageDangerProps} />)
     expect(tree).toMatchSnapshot()
   })
 })

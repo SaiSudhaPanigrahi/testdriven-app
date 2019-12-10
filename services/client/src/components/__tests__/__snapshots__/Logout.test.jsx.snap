@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavBar renders a snapshot properly 1`] = `
+exports[`Logout renders a snapshot properly 1`] = `
 <Router
   history={
     Object {
@@ -11,7 +11,7 @@ exports[`NavBar renders a snapshot properly 1`] = `
       "entries": Array [
         Object {
           "hash": "",
-          "key": "h0wl59",
+          "key": "tu3ph3",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -25,7 +25,7 @@ exports[`NavBar renders a snapshot properly 1`] = `
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "h0wl59",
+        "key": "tu3ph3",
         "pathname": "/",
         "search": "",
         "state": undefined,
@@ -35,8 +35,20 @@ exports[`NavBar renders a snapshot properly 1`] = `
     }
   }
 >
-  <NavBar
-    title="Hello World"
+  <Logout
+    logoutUser={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
   />
 </Router>
 `;

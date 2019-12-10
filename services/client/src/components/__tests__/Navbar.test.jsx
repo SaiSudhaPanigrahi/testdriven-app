@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { MemoryRouter as Router } from 'react-router-dom'
-import renderer from 'react-test-renderer'
+import toJson from 'enzyme-to-json'
 
 import NavBar from '../NavBar'
 
@@ -15,12 +15,10 @@ test('NavBar renders properly', () => {
 })
 
 test('NavBar renders a snapshot properly', () => {
-  const tree = renderer
-    .create(
+  const tree = shallow(
       <Router location='/'>
         <NavBar title={title} />
       </Router>
     )
-    .toJSON()
-  expect(tree).toMatchSnapshot()
+  expect(toJson(tree)).toMatchSnapshot()
 })

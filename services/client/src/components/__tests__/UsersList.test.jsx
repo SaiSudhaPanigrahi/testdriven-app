@@ -1,6 +1,6 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
 
 import UsersList from '../UsersList'
 
@@ -49,6 +49,6 @@ test('UsersList renders properly', () => {
 })
 
 test('UsersList renders a snapshot properly', () => {
-  const tree = renderer.create(<UsersList users={users} />).toJSON()
-  expect(tree).toMatchSnapshot()
+  const tree = shallow(<UsersList users={users} />)
+  expect(toJson(tree)).toMatchSnapshot()
 })

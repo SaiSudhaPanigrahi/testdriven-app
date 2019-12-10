@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import renderer from 'react-test-renderer'
+import toJson from 'enzyme-to-json'
 
 import Form from '../forms/Form'
 
@@ -66,8 +66,8 @@ describe('When not authenticated', () => {
       expect(wrapper.instance().validateForm).toHaveBeenCalledTimes(1)
     })
     it(`${el.formType} Form renders a snapshot properly`, () => {
-      const tree = renderer.create(component).toJSON()
-      expect(tree).toMatchSnapshot()
+      const wrapper = shallow(component)
+      expect(toJson(wrapper)).toMatchSnapshot()
     })
   })
 })

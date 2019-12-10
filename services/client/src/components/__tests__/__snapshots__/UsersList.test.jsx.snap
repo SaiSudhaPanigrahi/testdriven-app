@@ -32,7 +32,9 @@ exports[`UsersList renders a snapshot properly 1`] = `
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr
+        key="1"
+      >
         <td>
           1
         </td>
@@ -49,7 +51,9 @@ exports[`UsersList renders a snapshot properly 1`] = `
           false
         </td>
       </tr>
-      <tr>
+      <tr
+        key="2"
+      >
         <td>
           2
         </td>

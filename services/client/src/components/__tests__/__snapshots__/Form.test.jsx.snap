@@ -9,23 +9,25 @@ exports[`When not authenticated Login Form renders a snapshot properly 1`] = `
   </h1>
   <hr />
   <br />
-  <div>
-    <ul
-      className="validation-list"
-    >
-      <li
-        className="error"
-      >
-        Email is required.
-      </li>
-      <li
-        className="error"
-      >
-        Password is required.
-      </li>
-    </ul>
-    <br />
-  </div>
+  <FormErrors
+    formRules={
+      Array [
+        Object {
+          "field": "email",
+          "id": 1,
+          "name": "Email is required.",
+          "valid": false,
+        },
+        Object {
+          "field": "password",
+          "id": 2,
+          "name": "Password is required.",
+          "valid": false,
+        },
+      ]
+    }
+    formType="Login"
+  />
   <form
     method="post"
     onSubmit={[Function]}
@@ -75,33 +77,37 @@ exports[`When not authenticated Register Form renders a snapshot properly 1`] = 
   </h1>
   <hr />
   <br />
-  <div>
-    <ul
-      className="validation-list"
-    >
-      <li
-        className="error"
-      >
-        Username must be greater than 5 characters.
-      </li>
-      <li
-        className="error"
-      >
-        Email must be greater than 5 characters.
-      </li>
-      <li
-        className="error"
-      >
-        Email must be a valid email address.
-      </li>
-      <li
-        className="error"
-      >
-        Password must be greater than 10 characters.
-      </li>
-    </ul>
-    <br />
-  </div>
+  <FormErrors
+    formRules={
+      Array [
+        Object {
+          "field": "username",
+          "id": 1,
+          "name": "Username must be greater than 5 characters.",
+          "valid": false,
+        },
+        Object {
+          "field": "email",
+          "id": 2,
+          "name": "Email must be greater than 5 characters.",
+          "valid": false,
+        },
+        Object {
+          "field": "email",
+          "id": 3,
+          "name": "Email must be a valid email address.",
+          "valid": false,
+        },
+        Object {
+          "field": "password",
+          "id": 4,
+          "name": "Password must be greater than 10 characters.",
+          "valid": false,
+        },
+      ]
+    }
+    formType="Register"
+  />
   <form
     method="post"
     onSubmit={[Function]}
