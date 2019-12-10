@@ -1,19 +1,21 @@
 # base image
-FROM node:12.12.0-alpine
+FROM node:12.13.1-alpine
 
-# set working directory
-WORKDIR /usr/src/app
-
-# add `/usr/src/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-
-# install and cache app dependencies
-COPY package*.json /usr/src/app/
-COPY pnpm-lock.yaml /usr/src/app/pnpm-lock.yaml
+# install global packages
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 RUN npm install npm@latest -g
 RUN npm install pnpm react-scripts@3.3.0 -g
-RUN chown -R node:node . && chmod -R 755 .
+
+# set working directory
+RUN mkdir -p /usr/src/app && chown node:node /usr/src/app
+WORKDIR /usr/src/app
+
+# install dependencies
 USER node
+COPY package*.json /usr/src/app/
+COPY pnpm-lock.yaml /usr/src/app/pnpm-lock.yaml
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENV PATH=$PATH:/home/node/.npm-global/bin
 RUN pnpm install
 
 # start app
