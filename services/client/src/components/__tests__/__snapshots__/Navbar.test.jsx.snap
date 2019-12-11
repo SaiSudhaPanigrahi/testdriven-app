@@ -11,7 +11,7 @@ exports[`NavBar renders a snapshot properly 1`] = `
       "entries": Array [
         Object {
           "hash": "",
-          "key": "imyhja",
+          "key": "3tg4ij",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -25,7 +25,7 @@ exports[`NavBar renders a snapshot properly 1`] = `
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "imyhja",
+        "key": "3tg4ij",
         "pathname": "/",
         "search": "",
         "state": undefined,
