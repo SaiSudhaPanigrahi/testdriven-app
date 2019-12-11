@@ -11,7 +11,7 @@ exports[`FormErrors (with login form) renders a snapshot properly 1`] = `
       "entries": Array [
         Object {
           "hash": "",
-          "key": "vo1657",
+          "key": "ziqade",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -25,7 +25,7 @@ exports[`FormErrors (with login form) renders a snapshot properly 1`] = `
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "vo1657",
+        "key": "ziqade",
         "pathname": "/",
         "search": "",
         "state": undefined,
@@ -68,7 +68,7 @@ exports[`FormErrors (with register form) renders a snapshot properly 1`] = `
       "entries": Array [
         Object {
           "hash": "",
-          "key": "4fy16i",
+          "key": "608gox",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -82,7 +82,7 @@ exports[`FormErrors (with register form) renders a snapshot properly 1`] = `
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "4fy16i",
+        "key": "608gox",
         "pathname": "/",
         "search": "",
         "state": undefined,
