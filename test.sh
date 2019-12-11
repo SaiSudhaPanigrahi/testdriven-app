@@ -25,7 +25,7 @@ server() {
 # run client-side tests
 client() {
   docker-compose up -d --build
-  docker-compose exec client npm run coverage -u
+  docker-compose exec client npm run coverage
   inspect $? client
   docker-compose down
 }

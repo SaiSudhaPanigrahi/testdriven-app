@@ -11,7 +11,7 @@ exports[`Logout renders a snapshot properly 1`] = `
       "entries": Array [
         Object {
           "hash": "",
-          "key": "gx2b9w",
+          "key": "2368cx",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -25,7 +25,7 @@ exports[`Logout renders a snapshot properly 1`] = `
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "gx2b9w",
+        "key": "2368cx",
         "pathname": "/",
         "search": "",
         "state": undefined,
