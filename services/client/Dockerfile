@@ -7,11 +7,9 @@ RUN npm install npm@latest -g
 RUN npm install pnpm react-scripts@3.3.0 -g
 
 # set working directory
-RUN mkdir -p /usr/src/app && chown node:node /usr/src/app
 WORKDIR /usr/src/app
 
 # install dependencies
-USER node
 COPY package*.json /usr/src/app/
 COPY pnpm-lock.yaml /usr/src/app/pnpm-lock.yaml
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
