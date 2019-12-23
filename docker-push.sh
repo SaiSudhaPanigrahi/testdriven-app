@@ -26,18 +26,22 @@ then
      [ "$TRAVIS_BRANCH" == "production" ]
   then
     # users
+    docker pull $USERS_REPO || true
     docker build $USERS_REPO -t $USERS:$COMMIT -f Dockerfile-prod
     docker tag $USERS:$COMMIT $REPO/$USERS:$TAG
     docker push $REPO/$USERS:$TAG
     # users db
+    docker pull $USERS_DB_REPO || true
     docker build $USERS_DB_REPO -t $USERS_DB:$COMMIT -f Dockerfile
     docker tag $USERS_DB:$COMMIT $REPO/$USERS_DB:$TAG
     docker push $REPO/$USERS_DB:$TAG
     # client
+    docker pull $CLIENT_REPO || true
     docker build $CLIENT_REPO -t $CLIENT:$COMMIT -f Dockerfile-prod --build-arg REACT_APP_USERS_SERVICE_URL=TBD
     docker tag $CLIENT:$COMMIT $REPO/$CLIENT:$TAG
     docker push $REPO/$CLIENT:$TAG
     # swagger
+    docker pull $SWAGGER_REPO || true
     docker build $SWAGGER_REPO -t $SWAGGER:$COMMIT -f Dockerfile-prod
     docker tag $SWAGGER:$COMMIT $REPO/$SWAGGER:$TAG
     docker push $REPO/$SWAGGER:$TAG
