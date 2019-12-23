@@ -51,6 +51,12 @@
           "responses": {
             "201": {
               "description": "User added"
+            },
+            "400": {
+              "description": "Invalid payload./Sorry. That email already exists."
+            },
+            "401": {
+              "description": "You do not have permission to do that."
             }
           }
         }
@@ -72,7 +78,10 @@
         ],
         "responses": {
           "200": {
-            "description": "user object"
+            "description": "success"
+          },
+          "404": {
+            "description": "User does not exist"
           }
         }
       }
@@ -93,7 +102,10 @@
         },
         "responses": {
           "200": {
-            "description": "user object"
+            "description": "Successfully registered."
+          },
+          "400": {
+            "description": "Invalid payload./Sorry. That user already exists."
           }
         }
       }
@@ -114,7 +126,16 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully logged in"
+            "description": "Successfully logged in."
+          },
+          "400": {
+            "description": "Invalid payload."
+          },
+          "404": {
+            "description": "Invalid credentials."
+          },
+          "500": {
+            "description": "Something went wrong. Please try again."
           }
         }
       }
@@ -129,7 +150,10 @@
         ],
         "responses": {
           "200": {
-            "description": "user object"
+            "description": "success"
+          },
+          "403": {
+            "description": "Provide a valid auth token."
           }
         }
       }
@@ -144,7 +168,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully logged out"
+            "description": "Successfully logged out."
+          },
+          "403": {
+            "description": "Provide a valid auth token."
           }
         }
       }
