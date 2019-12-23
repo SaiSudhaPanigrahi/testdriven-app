@@ -30,5 +30,8 @@ before_script:
 script:
   - bash test.sh stage
 
+after_success:
+  - bash ./docker-push.sh
+
 after_script:
   - docker-compose down
